@@ -11,9 +11,9 @@
   width: 570px;
   height: 100vh;
   overflow-y: scroll;
-  border-right: solid 5px white;
-  /*background-color: #F25757;*/
-  background-color: #598392;
+  z-index: 2000;
+  box-shadow: 1px 0px 8px #666;
+  background-color: white;
 }
 
 .map-container {
