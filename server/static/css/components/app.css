@@ -1,0 +1,25 @@
+.app-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.feed-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 570px;
+  height: 100vh;
+  overflow-y: scroll;
+  border-right: solid 5px white;
+  /*background-color: #F25757;*/
+  background-color: #598392;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100vw - 570px);
+  height: 100vh;
+}
