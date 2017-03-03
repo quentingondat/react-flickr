@@ -10081,15 +10081,19 @@ var Photos = function (_Component) {
       }
 
       var photos = this.props.photos.map(function (photo, i) {
-        var color_id = getRandomInt(1, 4);
         var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
+        var style = { backgroundImage: "url(" + url + ")" };
         return _react2.default.createElement(
           'div',
           { className: "card-wrapper" },
           _react2.default.createElement(
             'div',
-            { className: 'card card-color-' + color_id, key: i },
-            _react2.default.createElement('img', { src: url, alt: '', height: '150', width: '150' })
+            { className: "card", key: i },
+            _react2.default.createElement(
+              'div',
+              { className: "card-image", style: style },
+              _react2.default.createElement('div', { className: "toggle-play-button" })
+            )
           )
         );
       });
@@ -10222,13 +10226,17 @@ var _superagent = __webpack_require__(230);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
+var _config = __webpack_require__(236);
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   get: function get(params, callback) {
     var lat = params.location.lat;
     var lng = params.location.lng;
-    var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=d0c654dc90f83c4bed5948323fbef98d&has_geo=1&lat=' + lat + '&lon=' + lng + '&per_page=30&page=1&format=json&nojsoncallback=1&radius=0.4';
+    var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + _config2.default.flickrApiKey + '&has_geo=1&lat=' + lat + '&lon=' + lng + '&per_page=30&page=1&format=json&nojsoncallback=1&radius=0.4';
     _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
       callback(err, response);
     });
@@ -10237,7 +10245,7 @@ exports.default = {
   getLocation: function getLocation(photos, callback) {
     var geoPhotos = [];
     photos.forEach(function (photo, i) {
-      var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=d0c654dc90f83c4bed5948323fbef98d&photo_id=' + photo.id + '&format=json&nojsoncallback=1&radius=0.4';
+      var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=' + _config2.default.flickrApiKey + '&photo_id=' + photo.id + '&format=json&nojsoncallback=1&radius=0.4';
       _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
         photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) };
         geoPhotos.push(photo);
@@ -28383,6 +28391,15 @@ exports.cleanHeader = function(header, shouldStripCookie){
   }
   return header;
 };
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  flickrApiKey: "c3c40dd2d48cc6ade8b345b5ddcc30e5"
+}
+
 
 /***/ })
 /******/ ]);

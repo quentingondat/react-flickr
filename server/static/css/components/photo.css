@@ -11,24 +11,29 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.card-color-1 {
   background-color: #white;
   box-shadow: 1px 7px 7px #ddd;
 }
 
-.card-color-2 {
-  background-color: #white;
-  box-shadow: 1px 7px 7px #ddd;
+.card-image {
+  width: 150px;
+  height: 150px;
+  display: block;
 }
 
-.card-color-3 {
-  background-color: #white;
-  box-shadow: 1px 7px 7px #ddd;
+.toggle-play-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: background-color .2s ease-in-out;
+
 }
 
-.card-color-4 {
-  background-color: #white;
-  box-shadow: 1px 7px 7px #ddd;
+.toggle-play-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
 }
+

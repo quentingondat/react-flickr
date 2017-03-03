@@ -16,12 +16,15 @@ class Photos extends Component {
     }
 
     const photos = this.props.photos.map((photo, i) => {
-      var color_id = getRandomInt(1, 4)
       var url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg`
+      var style = { backgroundImage: "url(" + url + ")" }
       return (
         <div className={"card-wrapper"}>
-          <div className={`card card-color-${color_id}`} key={i}>
-            <img src={url} alt="" height="150" width="150" />
+          <div className={"card"} key={i}>
+            <div className={"card-image"} style={style}>
+              <div className={"toggle-play-button"}>
+              </div>
+            </div>
           </div>
         </div>
       )

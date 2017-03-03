@@ -12,7 +12,7 @@
   height: 100vh;
   overflow-y: scroll;
   z-index: 2000;
-  box-shadow: 1px 0px 8px #666;
+  box-shadow: 1px 0px 9px #888;
   background-color: white;
 }
 
