@@ -10247,6 +10247,7 @@ exports.default = {
     photos.forEach(function (photo, i) {
       var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=' + _config2.default.flickrApiKey + '&photo_id=' + photo.id + '&format=json&nojsoncallback=1&radius=0.4';
       _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
+        console.log(response);
         photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) };
         geoPhotos.push(photo);
       });

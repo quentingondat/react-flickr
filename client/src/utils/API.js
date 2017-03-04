@@ -24,6 +24,7 @@ export default {
         .query(null)
         .set('Accept', 'text/json')
         .end((err, response) => {
+          console.log(response)
           photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) }
           geoPhotos.push(photo)
         })
