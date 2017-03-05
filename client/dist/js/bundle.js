@@ -10197,7 +10197,7 @@ var Map = function (_Component) {
           key: i
         }, marker, {
           icon: icon,
-          'z-index': zIndex
+          zIndex: zIndex
         }));
       });
 

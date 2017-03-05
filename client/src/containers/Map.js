@@ -58,7 +58,7 @@ class Map extends Component {
                 key={i}
                 {...marker}
                 icon={icon}
-                z-index={zIndex}
+                zIndex={zIndex}
                 />)
     })
 
