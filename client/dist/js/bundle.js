@@ -10050,6 +10050,10 @@ var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Card = __webpack_require__(237);
+
+var _Card2 = _interopRequireDefault(_Card);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10058,44 +10062,30 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Photos = function (_Component) {
-  _inherits(Photos, _Component);
+var Feed = function (_Component) {
+  _inherits(Feed, _Component);
 
-  function Photos() {
-    _classCallCheck(this, Photos);
+  function Feed() {
+    _classCallCheck(this, Feed);
 
-    var _this = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this));
+    var _this = _possibleConstructorReturn(this, (Feed.__proto__ || Object.getPrototypeOf(Feed)).call(this));
 
     _this.state = {
-      photos: []
+      photos: [],
+      active_marker: null
     };
     return _this;
   }
 
-  _createClass(Photos, [{
+  _createClass(Feed, [{
     key: 'render',
     value: function render() {
-
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
+      var _this2 = this;
 
       var photos = this.props.photos.map(function (photo, i) {
         var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
-        var style = { backgroundImage: "url(" + url + ")" };
-        return _react2.default.createElement(
-          'div',
-          { className: "card-wrapper" },
-          _react2.default.createElement(
-            'div',
-            { className: "card", key: i },
-            _react2.default.createElement(
-              'div',
-              { className: "card-image", style: style },
-              _react2.default.createElement('div', { className: "toggle-play-button" })
-            )
-          )
-        );
+        var image = { backgroundImage: "url(" + url + ")" };
+        return _react2.default.createElement(_Card2.default, { key: i, index: i, changeFocus: _this2.props.changeFocus.bind(_this2), image: image });
       });
 
       return _react2.default.createElement(
@@ -10106,10 +10096,10 @@ var Photos = function (_Component) {
     }
   }]);
 
-  return Photos;
+  return Feed;
 }(_react.Component);
 
-exports.default = Photos;
+exports.default = Feed;
 
 /***/ }),
 /* 91 */
@@ -10130,10 +10120,6 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(27);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _reactGoogleMaps = __webpack_require__(213);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -10153,8 +10139,7 @@ var Map = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this));
 
     _this.state = {
-      photos: [],
-      active_marker: null
+      photos: []
     };
     return _this;
   }
@@ -10176,14 +10161,44 @@ var Map = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var yellow_icon = {
+
+        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        fillColor: '#FCBA04',
+        fillOpacity: 1,
+
+        strokeWeight: 0,
+        scale: 0.8
+      };
+
+      var red_icon = {
+
+        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        fillColor: '#A50104',
+        fillOpacity: 1,
+
+        strokeWeight: 0.1,
+        scale: 1
+      };
+
       var mapContainer = _react2.default.createElement('div', { style: { height: '100%', width: '100%' } });
+
       var markers = this.props.markers.map(function (marker, i) {
+
+        if (_this2.props.active_marker == i) {
+          var icon = red_icon;
+          var zIndex = 99999999;
+        } else {
+          var icon = yellow_icon;
+          var zIndex = 1;
+        }
+
         return _react2.default.createElement(_reactGoogleMaps.Marker, _extends({
           key: i
         }, marker, {
-          onClick: function onClick() {
-            _this2.onMarkerClick(marker);
-          } }));
+          icon: icon,
+          'z-index': zIndex
+        }));
       });
 
       return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
@@ -10247,7 +10262,6 @@ exports.default = {
     photos.forEach(function (photo, i) {
       var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=' + _config2.default.flickrApiKey + '&photo_id=' + photo.id + '&format=json&nojsoncallback=1&radius=0.4';
       _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
-        console.log(response);
         photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) };
         geoPhotos.push(photo);
       });
@@ -26345,7 +26359,8 @@ var App = function (_Component) {
         lat: 48.8584,
         lng: 2.2945
       },
-      photos: []
+      photos: [],
+      focus: null
     };
     return _this;
   }
@@ -26387,6 +26402,13 @@ var App = function (_Component) {
       });
     }
   }, {
+    key: 'changeFocus',
+    value: function changeFocus(index) {
+      var updatedState = Object.assign({}, this.state);
+      updatedState.active_marker = index;
+      this.setState(updatedState);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -26395,12 +26417,12 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'feed-container' },
-          _react2.default.createElement(_Feed2.default, { photos: this.state.photos })
+          _react2.default.createElement(_Feed2.default, { photos: this.state.photos, changeFocus: this.changeFocus.bind(this) })
         ),
         _react2.default.createElement(
           'div',
           { className: 'map-container' },
-          _react2.default.createElement(_Map2.default, { center: this.state.location, markers: this.state.photos, updateMarkers: this.updatePhotos.bind(this) })
+          _react2.default.createElement(_Map2.default, { center: this.state.location, markers: this.state.photos, active_marker: this.state.active_marker, updateMarkers: this.updatePhotos.bind(this) })
         )
       );
     }
@@ -28401,6 +28423,52 @@ module.exports = {
   flickrApiKey: "c3c40dd2d48cc6ade8b345b5ddcc30e5"
 }
 
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Card = function Card(_ref) {
+  var image = _ref.image,
+      changeFocus = _ref.changeFocus,
+      index = _ref.index;
+  return _react2.default.createElement(
+    "div",
+    { className: "card-wrapper" },
+    _react2.default.createElement(
+      "div",
+      { className: "card" },
+      _react2.default.createElement(
+        "div",
+        { className: "card-image", style: image },
+        _react2.default.createElement("div", { className: "toggle-play-button", onMouseEnter: function onMouseEnter() {
+            changeFocus(index);
+          }, onMouseLeave: function onMouseLeave() {
+            changeFocus(null);
+          } })
+      )
+    )
+  );
+};
+
+Card.propTypes = {
+  image: _react.PropTypes.object.isRequired
+};
+
+exports.default = Card;
 
 /***/ })
 /******/ ]);

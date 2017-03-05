@@ -14,7 +14,8 @@ class App extends Component {
           lat: 48.8584,
           lng: 2.2945
         },
-        photos: []
+        photos: [],
+        focus: null
       }
     }
 
@@ -48,14 +49,20 @@ class App extends Component {
     })
   }
 
+  changeFocus(index) {
+    let updatedState = Object.assign({}, this.state)
+    updatedState.active_marker = index
+    this.setState(updatedState)
+  }
+
   render() {
     return (
         <div className="app-container">
           <div className="feed-container">
-            <Feed photos={this.state.photos}/>
+            <Feed photos={this.state.photos} changeFocus={this.changeFocus.bind(this)}/>
           </div>
           <div className="map-container">
-            <Map center={this.state.location} markers={this.state.photos} updateMarkers={this.updatePhotos.bind(this)} />
+            <Map center={this.state.location} markers={this.state.photos} active_marker={this.state.active_marker} updateMarkers={this.updatePhotos.bind(this)} />
           </div>
         </div>
       )

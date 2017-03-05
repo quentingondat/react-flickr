@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
@@ -7,8 +6,7 @@ class Map extends Component {
   constructor() {
     super()
     this.state = {
-        photos: [],
-        active_marker: null,
+        photos: []
       }
     }
 
@@ -24,12 +22,44 @@ class Map extends Component {
   }
 
   render() {
+    var yellow_icon = {
+
+        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        fillColor: '#FCBA04',
+        fillOpacity: 1,
+
+        strokeWeight: 0,
+        scale: 0.8
+    }
+
+    var red_icon = {
+
+        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        fillColor: '#A50104',
+        fillOpacity: 1,
+
+        strokeWeight: 0.1,
+        scale: 1
+    }
+
     const mapContainer = <div style = {{height: '100%', width: '100%'}}></div>
+
     const markers = this.props.markers.map((marker, i) => {
-      return <Marker
+
+      if (this.props.active_marker == i) {
+        var icon = red_icon
+        var zIndex = 99999999
+      } else {
+        var icon = yellow_icon
+        var zIndex = 1
+      }
+
+      return (<Marker
                 key={i}
                 {...marker}
-                onClick={() => {this.onMarkerClick(marker)}}/>
+                icon={icon}
+                z-index={zIndex}
+                />)
     })
 
 

@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
+import Card from '../components/Card'
 
-class Photos extends Component {
+class Feed extends Component {
   constructor() {
     super()
     this.state = {
-        photos: []
+        photos: [],
+        active_marker: null
       }
     }
 
   render() {
 
-    function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
     const photos = this.props.photos.map((photo, i) => {
       var url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg`
-      var style = { backgroundImage: "url(" + url + ")" }
+      var image = { backgroundImage: "url(" + url + ")" }
       return (
-        <div className={"card-wrapper"}>
-          <div className={"card"} key={i}>
-            <div className={"card-image"} style={style}>
-              <div className={"toggle-play-button"}>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Card key={i} index={i} changeFocus={this.props.changeFocus.bind(this)} image={image} />
       )
     })
 
@@ -40,4 +31,4 @@ class Photos extends Component {
   }
 }
 
-export default Photos
+export default Feed
