@@ -23,3 +23,44 @@ npm run start
 ```
 
 and open [localhost:3000](http://localhost:3000).
+
+Development mode:
+
+```bash
+npm run dev   # Uses nodemon to log errors
+npm run build    # Builds the app with webpack
+```
+
+then open [localhost:8080](http://localhost:8080).
+
+## Application structure
+
+```bash
+. # Starts the express server
+├── config.js
+├── webpack.config.js
+├── client
+│   ├── src
+│   │   ├── app.js
+│   │   ├── containers
+│   │   │   ├── Feed.js
+│   │   │   ├── Map.js
+│   │   │   └── Navbar.js
+│   │   ├── components
+│   │   │   └── Card.js
+│   │   ├── css
+│   │   │   ├── style.css
+│   │   │   └── components
+│   │   │       ├── app.css
+│   │   │       ├── base.css
+│   │   │       ├── card.css
+│   │   │       ├── feed.css
+│   │   │       ├── map.css
+│   │   │       └── navbar.css
+│   │   └── utils
+│   │       └── API.js
+│   └── dist
+└── server
+    └── static
+        └── index.html
+```
