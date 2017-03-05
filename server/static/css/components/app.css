@@ -4,22 +4,3 @@
   width: 100vw;
 }
 
-.feed-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 570px;
-  height: 100vh;
-  overflow-y: scroll;
-  z-index: 2000;
-  box-shadow: 1px 0px 9px #888;
-  background-color: white;
-}
-
-.map-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: calc(100vw - 570px);
-  height: 100vh;
-}

@@ -10046,10 +10046,6 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(27);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _Card = __webpack_require__(237);
 
 var _Card2 = _interopRequireDefault(_Card);
@@ -10147,9 +10143,6 @@ var Map = function (_Component) {
   _createClass(Map, [{
     key: 'mapMoved',
     value: function mapMoved() {
-      var updatedState = Object.assign({}, this.state);
-      updatedState.active_marker = null;
-      this.setState(updatedState);
       var location = {
         lat: this.state.map.getCenter().lat(),
         lng: this.state.map.getCenter().lng()
@@ -10213,9 +10206,9 @@ var Map = function (_Component) {
               });
             },
             onDragend: this.mapMoved.bind(this),
-            defaultZoom: 15,
-            defaultCenter: this.props.center,
-            options: { streetViewControl: false, mapTypeControl: false, styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "on" }, { "color": "#000000" }] }, { "featureType": "landscape", "stylers": [{ "color": "#ffffff" }, { "visibility": "on" }] }, {}] } },
+            defaultZoom: 14,
+            center: this.props.center,
+            options: { streetViewControl: false, mapTypeControl: false, styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "geometry.fill", "stylers": [{ "color": "#0F0919" }] }, { "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#E4F7F7" }] }, { "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry.fill", "stylers": [{ "color": "#002FA7" }] }, { "featureType": "poi.attraction", "elementType": "geometry.fill", "stylers": [{ "color": "#E60003" }] }, { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [{ "color": "#FBFCF4" }] }, { "featureType": "poi.business", "elementType": "geometry.fill", "stylers": [{ "color": "#FFED00" }] }, { "featureType": "poi.government", "elementType": "geometry.fill", "stylers": [{ "color": "#D41C1D" }] }, { "featureType": "poi.school", "elementType": "geometry.fill", "stylers": [{ "color": "#BF0000" }] }, { "featureType": "transit.line", "elementType": "geometry.fill", "stylers": [{ "saturation": -100 }] }] } },
           markers
         ) });
     }
@@ -10269,9 +10262,13 @@ exports.default = {
     callback(geoPhotos);
   },
 
-  put: function put() {},
-
-  delete: function _delete() {}
+  geocode: function geocode(value, callback) {
+    var address = value.replace(" ", "+");
+    var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + _config2.default.geocodeApiKey;
+    _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
+      callback(err, response);
+    });
+  }
 };
 
 /***/ }),
@@ -26334,6 +26331,10 @@ var _Feed = __webpack_require__(90);
 
 var _Feed2 = _interopRequireDefault(_Feed);
 
+var _Navbar = __webpack_require__(238);
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
 var _API = __webpack_require__(92);
 
 var _API2 = _interopRequireDefault(_API);
@@ -26360,7 +26361,8 @@ var App = function (_Component) {
         lng: 2.2945
       },
       photos: [],
-      focus: null
+      focus: null,
+      searchValue: ""
     };
     return _this;
   }
@@ -26409,19 +26411,37 @@ var App = function (_Component) {
       this.setState(updatedState);
     }
   }, {
+    key: 'onChange',
+    value: function onChange(event) {
+      var updatedState = Object.assign({}, this.state);
+      updatedState.searchValue = event.target.value;
+      this.setState(updatedState);
+    }
+  }, {
+    key: 'onSearch',
+    value: function onSearch(event) {
+      var _this4 = this;
+
+      event.preventDefault();
+      _API2.default.geocode(this.state.searchValue, function (error, response) {
+        _this4.updatePhotos(response.body.results[0].geometry.location);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'app-container' },
+        { className: "app-container" },
+        _react2.default.createElement(_Navbar2.default, { onSearch: this.onSearch.bind(this), onChange: this.onChange.bind(this) }),
         _react2.default.createElement(
           'div',
-          { className: 'feed-container' },
+          { className: "feed-container" },
           _react2.default.createElement(_Feed2.default, { photos: this.state.photos, changeFocus: this.changeFocus.bind(this) })
         ),
         _react2.default.createElement(
           'div',
-          { className: 'map-container' },
+          { className: "map-container" },
           _react2.default.createElement(_Map2.default, { center: this.state.location, markers: this.state.photos, active_marker: this.state.active_marker, updateMarkers: this.updatePhotos.bind(this) })
         )
       );
@@ -28420,7 +28440,8 @@ exports.cleanHeader = function(header, shouldStripCookie){
 /***/ (function(module, exports) {
 
 module.exports = {
-  flickrApiKey: "c3c40dd2d48cc6ade8b345b5ddcc30e5"
+  flickrApiKey: "c3c40dd2d48cc6ade8b345b5ddcc30e5",
+  geocodeApiKey: "AIzaSyBrof2zm8myOQAh3XPtxh60Ut1qKuFiiRs"
 }
 
 
@@ -28469,6 +28490,79 @@ Card.propTypes = {
 };
 
 exports.default = Card;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_Component) {
+  _inherits(Navbar, _Component);
+
+  function Navbar() {
+    _classCallCheck(this, Navbar);
+
+    return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+  }
+
+  _createClass(Navbar, [{
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "nav" },
+        _react2.default.createElement(
+          "div",
+          { className: "nav-brand" },
+          _react2.default.createElement(
+            "h5",
+            null,
+            "react-flickr."
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "nav-search" },
+          _react2.default.createElement(
+            "form",
+            { action: "/", onSubmit: this.props.onSearch },
+            _react2.default.createElement(
+              "span",
+              { className: "icon" },
+              _react2.default.createElement("i", { className: "fa fa-search" })
+            ),
+            _react2.default.createElement("input", { className: "search-input", onChange: this.props.onChange.bind(this), type: "search", placeholder: "Search Flickr..." })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Navbar;
+}(_react.Component);
+
+exports.default = Navbar;
 
 /***/ })
 /******/ ]);

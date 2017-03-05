@@ -1,3 +1,6 @@
 @import url('./components/base.css');
 @import url('./components/app.css');
-@import url('./components/photo.css');
+@import url('./components/feed.css');
+@import url('./components/map.css');
+@import url('./components/card.css');
+@import url('./components/navbar.css');

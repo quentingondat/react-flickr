@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 
 import Map from './containers/Map'
 import Feed from './containers/Feed'
+import Navbar from './containers/Navbar'
 
 import API from './utils/API'
 
@@ -15,7 +16,8 @@ class App extends Component {
           lng: 2.2945
         },
         photos: [],
-        focus: null
+        focus: null,
+        searchValue: ""
       }
     }
 
@@ -55,13 +57,27 @@ class App extends Component {
     this.setState(updatedState)
   }
 
+  onChange(event) {
+    let updatedState = Object.assign({}, this.state)
+    updatedState.searchValue = event.target.value
+    this.setState(updatedState)
+  }
+
+  onSearch(event) {
+    event.preventDefault()
+    API.geocode(this.state.searchValue, (error, response) => {
+      this.updatePhotos(response.body.results[0].geometry.location)
+    })
+  }
+
   render() {
     return (
-        <div className="app-container">
-          <div className="feed-container">
+        <div className={"app-container"}>
+          <Navbar onSearch={this.onSearch.bind(this)} onChange={this.onChange.bind(this)} />
+          <div className={"feed-container"}>
             <Feed photos={this.state.photos} changeFocus={this.changeFocus.bind(this)}/>
           </div>
-          <div className="map-container">
+          <div className={"map-container"}>
             <Map center={this.state.location} markers={this.state.photos} active_marker={this.state.active_marker} updateMarkers={this.updatePhotos.bind(this)} />
           </div>
         </div>

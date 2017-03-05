@@ -31,12 +31,15 @@ export default {
     callback(geoPhotos)
   },
 
-
-  put: () => {
-
-  },
-
-  delete: () => {
-
-  },
+  geocode: (value, callback) => {
+    var address = value.replace(" ", "+")
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.geocodeApiKey}`
+    superagent
+    .get(url)
+    .query(null)
+    .set('Accept', 'text/json')
+    .end((err, response) => {
+      callback(err, response)
+    })
+  }
 }

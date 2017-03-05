@@ -1,0 +1,21 @@
+.feed-container {
+  position:absolute;
+  top: 60px;
+  left: 0px;
+  width: 570px;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
+  z-index: 20;
+  box-shadow: 1px 5px 9px #888;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.top-fader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 570px;
+  height: 5px;
+  background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,1));
+}
