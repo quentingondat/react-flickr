@@ -16,7 +16,9 @@ const Card = ({
   )
 
 Card.propTypes = {
-  image: PropTypes.object.isRequired
+  image: PropTypes.object.isRequired,
+  changeFocus: PropTypes.func.isRequired,
+  index: PropTypes.func.isRequired
 };
 
 export default Card

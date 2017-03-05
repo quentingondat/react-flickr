@@ -28486,7 +28486,9 @@ var Card = function Card(_ref) {
 };
 
 Card.propTypes = {
-  image: _react.PropTypes.object.isRequired
+  image: _react.PropTypes.object.isRequired,
+  changeFocus: _react.PropTypes.func.isRequired,
+  index: _react.PropTypes.func.isRequired
 };
 
 exports.default = Card;

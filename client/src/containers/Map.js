@@ -58,9 +58,6 @@ class Map extends Component {
                 />)
     })
 
-
-
-
     return (
           <GoogleMapLoader
             containerElement = { mapContainer }

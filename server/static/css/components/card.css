@@ -33,6 +33,6 @@
     transition: background-color .2s ease-in-out;
 }
 
-.toggle-play-button:hover {
+.card:hover .toggle-play-button {
   background-color: rgba(0, 0, 0, 0.2);
 }
