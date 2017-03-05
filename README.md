@@ -1,8 +1,8 @@
 # React-Flickr
 
-[React-Flickr](https://quentingondat.github.io/react-flickr) is a small [Flickr](https://quentingondat.github.io/react-flickr) client coded in [React](https://facebook.github.io/react). It is a small project that I designed to learn React.js
+[React-Flickr](https://quentingondat.github.io/react-flickr) is a small [Flickr](https://quentingondat.github.io/react-flickr) client coded with [React](https://facebook.github.io/react). It is a small project that I designed to learn React.js
 
-It is built on Node, [express](http://expressjs.com) using [React](https://facebook.github.io/react) with Flickr. It is developed with [webpack](http://webpack.github.io) and compiled from ES6 with [babeljs](http://babeljs.io).
+It is built on Node and [express](http://expressjs.com) using [React](https://facebook.github.io/react) for front-end and it fetches photos from Flickr. It is built with [webpack](http://webpack.github.io) and compiled from ES6 with [babeljs](http://babeljs.io).
 
 You can see it in action at: [https://quentingondat.github.io/react-flickr](https://quentingondat.github.io/react-flickr)
 
@@ -31,7 +31,7 @@ npm run dev   # Uses nodemon to log errors
 npm run build    # Builds the app with webpack
 ```
 
-then open [localhost:8080](http://localhost:8080).
+then open [localhost:3000](http://localhost:3000).
 
 ## Application structure
 
