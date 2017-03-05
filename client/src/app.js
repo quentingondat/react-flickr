@@ -7,13 +7,16 @@ import Navbar from './containers/Navbar'
 
 import API from './utils/API'
 
+import './css/style.css';
+
+
 class App extends Component {
   constructor() {
     super()
     this.state = {
         location: {
-          lat: 48.8584,
-          lng: 2.2945
+          lat: 48.8566,
+          lng: 2.3522
         },
         photos: [],
         focus: null,

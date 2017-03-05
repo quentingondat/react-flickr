@@ -21,7 +21,13 @@ module.exports = {
       query: {
         presets: ["react", "es2015"]
       }
-    }],
+    },
+    {
+      test: /\.css$/,
+      include: path.join(__dirname, '/client/src'),
+      loader: "style-loader!css-loader"
+    }
+    ],
   },
 
   // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
