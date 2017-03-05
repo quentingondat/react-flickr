@@ -10723,7 +10723,7 @@ exports = module.exports = __webpack_require__(21)();
 
 
 // module
-exports.push([module.i, ".feed-container {\n  position:absolute;\n  top: 60px;\n  left: 0px;\n  width: 570px;\n  height: calc(100% - 60px);\n  overflow-y: scroll;\n  z-index: 20;\n  box-shadow: 1px 5px 9px #888;\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, ".feed-container {\n  position:absolute;\n  top: 70px;\n  left: 0px;\n  width: 570px;\n  height: calc(100% - 70px);\n  overflow-y: scroll;\n  z-index: 20;\n  box-shadow: 1px 5px 9px #888;\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n", ""]);
 
 // exports
 
@@ -10737,7 +10737,7 @@ exports = module.exports = __webpack_require__(21)();
 
 
 // module
-exports.push([module.i, ".map-container {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  width: calc(100vw - 570px);\n  height: calc(100% - 60px);\n}\n", ""]);
+exports.push([module.i, ".map-container {\n  position: absolute;\n  top: 70px;\n  right: 0;\n  width: calc(100vw - 570px);\n  height: calc(100% - 70px);\n}\n", ""]);
 
 // exports
 
@@ -10751,7 +10751,7 @@ exports = module.exports = __webpack_require__(21)();
 
 
 // module
-exports.push([module.i, ".nav {\n    display: flex;\n    align-items: center;\n    height: 60px;\n    width: 100vw;\n    border-bottom: 1px solid rgba(0,0,0,0.05);\n    background-color: black;\n    z-index: 40;\n    border-bottom: solid 4px white;\n}\n\n.nav-brand {\n  padding: 0 36px;\n}\n\n.nav-brand h5 {\n  font-size: 18px;\n  font-weight: 700;\n  line-height: 26px;\n  color:white;\n}\n\n.nav-search {\n  margin-left: 20px;\n  width: 50vw;\n  height: 40px;\n  white-space: nowrap;\n}\n\n.nav-search input{\n  width: 100%;\n  height: 40px;\n  border: none;\n  background-color: black;\n  color: white;\n  padding-left: 30px;\n  outline: none;\n  font-size:16px\n}\n\n.nav-search .icon{\n  margin-left: 10px;\n  z-index: 1;\n  color: white;\n  font-size:20px;\n}\n", ""]);
+exports.push([module.i, ".nav {\n    display: flex;\n    align-items: center;\n    height: 70px;\n    width: 100vw;\n    border-bottom: 1px solid rgba(0,0,0,0.05);\n    background-color: black;\n    z-index: 40;\n    border-bottom: solid 4px white;\n}\n\n.nav-brand {\n  padding: 0 36px;\n}\n\n.nav-brand h5 {\n  font-size: 18px;\n  font-weight: 700;\n  line-height: 26px;\n  color:white;\n}\n\n.nav-search {\n  margin-left: 20px;\n  width: 50vw;\n  height: 40px;\n  white-space: nowrap;\n}\n\n.nav-search input{\n  width: 100%;\n  height: 40px;\n  border: none;\n  background-color: black;\n  color: white;\n  padding-left: 30px;\n  outline: none;\n  font-size:16px\n}\n\n.nav-search .icon{\n  margin-left: 10px;\n  z-index: 1;\n  color: white;\n  font-size:20px;\n}\n", ""]);
 
 // exports
 

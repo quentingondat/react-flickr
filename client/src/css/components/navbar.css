@@ -1,7 +1,7 @@
 .nav {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 70px;
     width: 100vw;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     background-color: black;
