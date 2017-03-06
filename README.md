@@ -1,5 +1,7 @@
 # React-Flickr
 
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/) [![David-DM - Dev. Dependencies](https://david-dm.org/quentingondat/react-flickr.svg)](https://david-dm.org/quentingondat/react-flickr.svg)
+
 [React-Flickr](https://quentingondat.github.io/react-flickr) is a small [Flickr](https://quentingondat.github.io/react-flickr) client coded with [React](https://facebook.github.io/react). It is a small project that I designed to learn React.js
 
 It is built on Node and [express](http://expressjs.com) using [React](https://facebook.github.io/react) for front-end and it fetches photos from Flickr. It is built with [webpack](http://webpack.github.io) and compiled from ES6 with [babeljs](http://babeljs.io).
@@ -7,8 +9,6 @@ It is built on Node and [express](http://expressjs.com) using [React](https://fa
 You can see it in action at: [https://quentingondat.github.io/react-flickr](https://quentingondat.github.io/react-flickr)
 
 <img src="https://quentingondat.github.io/react-flickr/showcase.png" width="700">
-
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
 **Clone this repo**
 
