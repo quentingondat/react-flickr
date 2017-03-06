@@ -10155,7 +10155,7 @@ var Feed = function (_Component) {
 
       var photos = this.props.photos.map(function (photo, i) {
         var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
-        var image = { backgroundImage: "url(" + url + ")" };
+        var image = { backgroundImage: 'url(' + url + ')' };
         return _react2.default.createElement(_Card2.default, { key: i, index: i, changeFocus: _this2.props.changeFocus.bind(_this2), image: image });
       });
 
@@ -10229,9 +10229,9 @@ var Map = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var yellow_icon = {
+      var yellowIcon = {
 
-        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        path: 'M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0',
         fillColor: '#FCBA04',
         fillOpacity: 1,
 
@@ -10239,9 +10239,9 @@ var Map = function (_Component) {
         scale: 0.8
       };
 
-      var red_icon = {
+      var redIcon = {
 
-        path: "M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0",
+        path: 'M-10,0a10,10 0 1,0 20,0a10,10 0 1,0 -20,0',
         fillColor: '#A50104',
         fillOpacity: 1,
 
@@ -10252,13 +10252,12 @@ var Map = function (_Component) {
       var mapContainer = _react2.default.createElement('div', { style: { height: '100%', width: '100%' } });
 
       var markers = this.props.markers.map(function (marker, i) {
-
-        if (_this2.props.active_marker == i) {
-          var icon = red_icon;
+        if (_this2.props.active_marker === i) {
+          var icon = redIcon;
           var zIndex = 99999999;
         } else {
-          var icon = yellow_icon;
-          var zIndex = 1;
+          icon = yellowIcon;
+          zIndex = 1;
         }
 
         return _react2.default.createElement(_reactGoogleMaps.Marker, _extends({
@@ -10275,7 +10274,9 @@ var Map = function (_Component) {
           _reactGoogleMaps.GoogleMap,
           {
             ref: function ref(map) {
-              if (_this2.state.map != null) return;
+              if (_this2.state.map != null) {
+                return;
+              }
               _this2.setState({
                 map: map
               });
@@ -10283,7 +10284,7 @@ var Map = function (_Component) {
             onDragend: this.mapMoved.bind(this),
             defaultZoom: 14,
             center: this.props.center,
-            options: { streetViewControl: false, mapTypeControl: false, styles: [{ "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "geometry.fill", "stylers": [{ "color": "#0F0919" }] }, { "featureType": "water", "elementType": "geometry.fill", "stylers": [{ "color": "#E4F7F7" }] }, { "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry.fill", "stylers": [{ "color": "#002FA7" }] }, { "featureType": "poi.attraction", "elementType": "geometry.fill", "stylers": [{ "color": "#E60003" }] }, { "featureType": "landscape", "elementType": "geometry.fill", "stylers": [{ "color": "#FBFCF4" }] }, { "featureType": "poi.business", "elementType": "geometry.fill", "stylers": [{ "color": "#FFED00" }] }, { "featureType": "poi.government", "elementType": "geometry.fill", "stylers": [{ "color": "#D41C1D" }] }, { "featureType": "poi.school", "elementType": "geometry.fill", "stylers": [{ "color": "#BF0000" }] }, { "featureType": "transit.line", "elementType": "geometry.fill", "stylers": [{ "saturation": -100 }] }] } },
+            options: { streetViewControl: false, mapTypeControl: false, styles: [{ 'elementType': 'labels', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#0F0919' }] }, { 'featureType': 'water', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#E4F7F7' }] }, { 'elementType': 'geometry.stroke', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'poi.park', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#002FA7' }] }, { 'featureType': 'poi.attraction', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#E60003' }] }, { 'featureType': 'landscape', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#FBFCF4' }] }, { 'featureType': 'poi.business', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#FFED00' }] }, { 'featureType': 'poi.government', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#D41C1D' }] }, { 'featureType': 'poi.school', 'elementType': 'geometry.fill', 'stylers': [{ 'color': '#BF0000' }] }, { 'featureType': 'transit.line', 'elementType': 'geometry.fill', 'stylers': [{ 'saturation': -100 }] }] } },
           markers
         ) });
     }
@@ -10329,33 +10330,32 @@ var Navbar = function (_Component) {
   }
 
   _createClass(Navbar, [{
-    key: "render",
+    key: 'render',
     value: function render() {
-
       return _react2.default.createElement(
-        "div",
-        { className: "nav" },
+        'div',
+        { className: 'nav' },
         _react2.default.createElement(
-          "div",
-          { className: "nav-brand" },
+          'div',
+          { className: 'nav-brand' },
           _react2.default.createElement(
-            "h5",
+            'h5',
             null,
-            "react-flickr."
+            'react-flickr.'
           )
         ),
         _react2.default.createElement(
-          "div",
-          { className: "nav-search" },
+          'div',
+          { className: 'nav-search' },
           _react2.default.createElement(
-            "form",
-            { action: "/", onSubmit: this.props.onSearch },
+            'form',
+            { action: '/', onSubmit: this.props.onSearch },
             _react2.default.createElement(
-              "span",
-              { className: "icon" },
-              _react2.default.createElement("i", { className: "fa fa-search" })
+              'span',
+              { className: 'icon' },
+              _react2.default.createElement('i', { className: 'fa fa-search' })
             ),
-            _react2.default.createElement("input", { className: "search-input", onChange: this.props.onChange.bind(this), type: "search", placeholder: "Search Flickr..." })
+            _react2.default.createElement('input', { className: 'search-input', onChange: this.props.onChange.bind(this), type: 'search', placeholder: 'Search Flickr...' })
           )
         )
       );
@@ -10403,15 +10403,18 @@ exports.default = {
     photos.forEach(function (photo, i) {
       var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=' + _config2.default.flickrApiKey + '&photo_id=' + photo.id + '&format=json&nojsoncallback=1&radius=0.4';
       _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
+        if (err) {
+          callback(err, null);
+        }
         photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) };
         geoPhotos.push(photo);
       });
     });
-    callback(geoPhotos);
+    callback(null, geoPhotos);
   },
 
   geocode: function geocode(value, callback) {
-    var address = value.replace(" ", "+");
+    var address = value.replace(' ', '+');
     var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + _config2.default.geocodeApiKey;
     _superagent2.default.get(url).query(null).set('Accept', 'text/json').end(function (err, response) {
       callback(err, response);
@@ -10450,8 +10453,8 @@ if(false) {
 /***/ (function(module, exports) {
 
 module.exports = {
-  flickrApiKey: "c3c40dd2d48cc6ade8b345b5ddcc30e5",
-  geocodeApiKey: "AIzaSyBrof2zm8myOQAh3XPtxh60Ut1qKuFiiRs"
+  flickrApiKey: 'c3c40dd2d48cc6ade8b345b5ddcc30e5',
+  geocodeApiKey: 'AIzaSyBrof2zm8myOQAh3XPtxh60Ut1qKuFiiRs'
 }
 
 
@@ -10477,15 +10480,15 @@ var Card = function Card(_ref) {
       changeFocus = _ref.changeFocus,
       index = _ref.index;
   return _react2.default.createElement(
-    "div",
-    { className: "card-wrapper" },
+    'div',
+    { className: 'card-wrapper' },
     _react2.default.createElement(
-      "div",
-      { className: "card" },
+      'div',
+      { className: 'card' },
       _react2.default.createElement(
-        "div",
-        { className: "card-image", style: image },
-        _react2.default.createElement("div", { className: "toggle-play-button", onMouseEnter: function onMouseEnter() {
+        'div',
+        { className: 'card-image', style: image },
+        _react2.default.createElement('div', { className: 'toggle-play-button', onMouseEnter: function onMouseEnter() {
             changeFocus(index);
           }, onMouseLeave: function onMouseLeave() {
             changeFocus(null);
@@ -28914,7 +28917,7 @@ var App = function (_Component) {
       },
       photos: [],
       focus: null,
-      searchValue: ""
+      searchValue: ''
     };
     return _this;
   }
@@ -28926,7 +28929,13 @@ var App = function (_Component) {
 
       var params = { location: this.state.location };
       _API2.default.get(params, function (error, response) {
-        _API2.default.getLocation(response.body.photos.photo, function (geoPhotos) {
+        if (error) {
+          return;
+        }
+        _API2.default.getLocation(response.body.photos.photo, function (err, geoPhotos) {
+          if (err) {
+            return;
+          }
           setTimeout(function () {
             var updatedState = Object.assign({}, _this2.state);
             updatedState.photos = geoPhotos;
@@ -28942,7 +28951,13 @@ var App = function (_Component) {
 
       var params = { location: location };
       _API2.default.get(params, function (error, response) {
-        _API2.default.getLocation(response.body.photos.photo, function (geoPhotos) {
+        if (error) {
+          return;
+        }
+        _API2.default.getLocation(response.body.photos.photo, function (err, geoPhotos) {
+          if (err) {
+            return;
+          }
           var updatedState = Object.assign({}, _this3.state);
           setTimeout(function () {
             updatedState.photos = geoPhotos;
@@ -28976,6 +28991,9 @@ var App = function (_Component) {
 
       event.preventDefault();
       _API2.default.geocode(this.state.searchValue, function (error, response) {
+        if (error) {
+          return;
+        }
         _this4.updatePhotos(response.body.results[0].geometry.location);
       });
     }
@@ -28984,16 +29002,16 @@ var App = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: "app-container" },
+        { className: 'app-container' },
         _react2.default.createElement(_Navbar2.default, { onSearch: this.onSearch.bind(this), onChange: this.onChange.bind(this) }),
         _react2.default.createElement(
           'div',
-          { className: "feed-container" },
+          { className: 'feed-container' },
           _react2.default.createElement(_Feed2.default, { photos: this.state.photos, changeFocus: this.changeFocus.bind(this) })
         ),
         _react2.default.createElement(
           'div',
-          { className: "map-container" },
+          { className: 'map-container' },
           _react2.default.createElement(_Map2.default, { center: this.state.location, markers: this.state.photos, active_marker: this.state.active_marker, updateMarkers: this.updatePhotos.bind(this) })
         )
       );

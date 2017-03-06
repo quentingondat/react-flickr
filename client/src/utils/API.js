@@ -24,15 +24,18 @@ export default {
         .query(null)
         .set('Accept', 'text/json')
         .end((err, response) => {
+          if (err) {
+            callback(err, null)
+          }
           photo.position = { lat: parseFloat(response.body.photo.location.latitude), lng: parseFloat(response.body.photo.location.longitude) }
           geoPhotos.push(photo)
         })
     })
-    callback(geoPhotos)
+    callback(null, geoPhotos)
   },
 
   geocode: (value, callback) => {
-    var address = value.replace(" ", "+")
+    var address = value.replace(' ', '+')
     var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${config.geocodeApiKey}`
     superagent
     .get(url)

@@ -8,6 +8,8 @@ You can see it in action at: [https://quentingondat.github.io/react-flickr](http
 
 <img src="https://quentingondat.github.io/react-flickr/showcase.png" width="700">
 
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+
 **Clone this repo**
 
 ```

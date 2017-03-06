@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   // the entry file for the bundle
@@ -7,8 +7,8 @@ module.exports = {
   // the bundle file we will get in the result
   output: {
     path: path.join(__dirname, '/client/dist/js'),
-    sourceMapFilename: "public/build/bundle.map",
-    filename: 'bundle.js',
+    sourceMapFilename: 'public/build/bundle.map',
+    filename: 'bundle.js'
   },
   devtool: '#source-map',
   module: {
@@ -19,14 +19,14 @@ module.exports = {
       include: path.join(__dirname, '/client/src'),
       loader: 'babel-loader',
       query: {
-        presets: ["react", "es2015"]
+        presets: ['react', 'es2015']
       }
     },
     {
       test: /\.css$/,
       include: path.join(__dirname, '/client/src'),
-      loader: "style-loader!css-loader"
+      loader: 'style-loader!css-loader'
     }
-    ],
-  },
-};
+    ]
+  }
+}
